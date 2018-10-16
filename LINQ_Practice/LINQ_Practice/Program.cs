@@ -10,7 +10,7 @@ namespace LINQ_Practice
     {
         static void Main(string[] args)
         {
-            LINQ_Problems.Problem2();
+            LINQ_Problems.Problem1();
         }
     }
 }
