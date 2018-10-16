@@ -20,7 +20,7 @@ namespace LINQ_Practice
         {
             List<string> names = new List<string>() { "Mike", "Dan", "Scott", "Nick", "Mike" };
             // Return a copy without duplicates
-            var noDupes = names.Select(n => n).Distinct();
+            var noDupes = names.Distinct();
 
             WriteList(noDupes);
         }
