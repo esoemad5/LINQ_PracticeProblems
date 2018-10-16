@@ -8,6 +8,10 @@ namespace LINQ_Practice
 {
     class LINQ_Problems
     {
+        public static void Problem1()
+        {
+
+        }
 
         public static void Problem2()
         {
@@ -15,11 +19,26 @@ namespace LINQ_Practice
             // Return a copy without duplicates
             var noDupes = names.Select(n => n).Distinct();
 
-            foreach(var item in noDupes)
+            WriteList(noDupes);
+        }
+
+        public static void Problem3()
+        {
+
+        }
+
+        public static void Problem4()
+        {
+
+        }
+
+        public static void WriteList<T>(IEnumerable<T> dataStructure)
+        {
+            foreach(T item in dataStructure)
             {
                 Console.WriteLine(item);
             }
-            Console.ReadKey();
+            Console.ReadKey(false);
         }
 
     }
