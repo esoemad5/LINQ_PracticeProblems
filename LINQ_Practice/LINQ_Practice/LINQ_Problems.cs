@@ -34,13 +34,20 @@ namespace LINQ_Practice
         {
             string lameName = "Terrill";
             // output should be a string: "E1I1L2R2T1"
-            var alphabeticallyOrdered = lameName.GroupBy(l => l).Select(l => char.ToUpper(l.Key)).OrderBy(l => l);
+            var alphabeticallyOrdered = lameName.Select(l => char.ToUpper(l)).OrderBy(l => l).Distinct();
 
-            var _alphabeticallyOrdered = lameName.GroupBy(x => x)
-              .Where(g => g.Count() > 0)
-              .Select(y => new { Element = y.Key, Counter = y.Count() }).ToList();
+            //This is the sollution being used for the moment
+            var _alphabeticallyOrdered = lameName.GroupBy(x => x).Where(g => g.Count() > 0).Select(y => new { Element = Char.ToUpper(y.Key), Counter = y.Count() }).OrderBy(l => l.Element);
+            foreach(var item in _alphabeticallyOrdered)
+            {
+                Console.Write(item.Element);
+                Console.Write(item.Counter);
+            }
+            Console.ReadKey();
 
-            WriteList(_alphabeticallyOrdered);
+            var __alphabeticallyOrdered = lameName.ToCharArray().OrderBy(c => c).GroupBy(c => char.ToUpper(c)).Select(c => char.ToUpper(c.Key));
+
+            //WriteList(_alphabeticallyOrdered);
         }
 
         public static void WriteList<T>(IEnumerable<T> dataStructure)
