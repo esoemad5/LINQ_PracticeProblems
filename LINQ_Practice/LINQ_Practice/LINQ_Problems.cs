@@ -38,7 +38,12 @@ namespace LINQ_Practice
             
             foreach(string studentsGrades in classGrades)
             {
-                var listOfInts = studentsGrades.Split(',').Select(Int32.Parse).ToList();
+                var listOfInts = studentsGrades.Split(',').
+                    Select(Int32.Parse).
+                    /*list of ints*/
+                    OrderBy(x => x).
+                    Skip(1)
+                    ;
                 WriteList(listOfInts);
             }
 
@@ -52,7 +57,11 @@ namespace LINQ_Practice
             var alphabeticallyOrdered = lameName.Select(l => char.ToUpper(l)).OrderBy(l => l).Distinct();
 
             //This is the sollution being used for the moment
-            var _alphabeticallyOrdered = lameName.GroupBy(x => x).Where(g => g.Count() > 0).Select(y => new { Element = Char.ToUpper(y.Key), Counter = y.Count() }).OrderBy(l => l.Element);
+            var _alphabeticallyOrdered = lameName.
+                GroupBy(x => x).
+                Where(g => g.Count() > 0).
+                Select(y => new { Element = Char.ToUpper(y.Key), Counter = y.Count() }).
+                OrderBy(l => l.Element);
             foreach(var item in _alphabeticallyOrdered)
             {
                 Console.Write(item.Element);
@@ -71,7 +80,8 @@ namespace LINQ_Practice
             {
                 Console.WriteLine(item);
             }
-            Console.ReadKey(false);
+            Console.WriteLine();
+            Console.ReadKey(true);
         }
 
     }
