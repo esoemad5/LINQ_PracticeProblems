@@ -35,19 +35,17 @@ namespace LINQ_Practice
                 "98,100,66,74,55"
             };
 
-            
-            foreach(string studentsGrades in classGrades)
-            {
-                var listOfInts = studentsGrades.Split(',').
-                    Select(Int32.Parse).
-                    /*list of ints*/
-                    OrderBy(x => x).
-                    Skip(1)
+            var sumOfGradesForOneStudent = classGrades.
+                    Select(s => s.
+                        Split(',').
+                        Select(Int32.Parse).
+                        OrderBy(x => x).
+                        Skip(1).
+                        Average()).
+                    Average()
                     ;
-                WriteList(listOfInts);
-            }
-
-            //WriteList();
+            Console.WriteLine("Baller solution");
+            Console.WriteLine(sumOfGradesForOneStudent);
         }
 
         public static void Problem4()
@@ -56,16 +54,16 @@ namespace LINQ_Practice
             // output should be a string: "E1I1L2R2T1"
             var alphabeticallyOrdered = lameName.Select(l => char.ToUpper(l)).OrderBy(l => l).Distinct();
 
-            //This is the sollution being used for the moment
+            //This is the solution being used for the moment
             var _alphabeticallyOrdered = lameName.
                 GroupBy(x => x).
-                Where(g => g.Count() > 0).
                 Select(y => new { Element = Char.ToUpper(y.Key), Counter = y.Count() }).
-                OrderBy(l => l.Element);
-            foreach(var item in _alphabeticallyOrdered)
+                OrderBy(l => l.Element).
+                Select(o => o.Element.ToString() + o.Counter.ToString())
+                ;
+            foreach (var item in _alphabeticallyOrdered)
             {
-                Console.Write(item.Element);
-                Console.Write(item.Counter);
+                Console.Write(item);
             }
             Console.ReadKey();
 
